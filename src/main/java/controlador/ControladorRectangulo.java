@@ -16,7 +16,7 @@ public class ControladorRectangulo {
 
     public boolean crear(double x1, double y1, double x2, double y2) {
         if (x1 == x2 || y1 == y2) {
-            return false; // no sería un rectángulo
+            return false; 
         }
         rectangulo = new Rectangulo(new Punto(x1, y1), new Punto(x2, y2));
         return true;
@@ -43,5 +43,19 @@ public class ControladorRectangulo {
 
     public String descripcion() {
         return rectangulo.toString();
+    }
+
+    public boolean puntoDentro(double px, double py) {
+        double x1 = rectangulo.getP1().getX();
+        double y1 = rectangulo.getP1().getY();
+        double x2 = rectangulo.getP2().getX();
+        double y2 = rectangulo.getP2().getY();
+
+        double minX = Math.min(x1, x2);
+        double maxX = Math.max(x1, x2);
+        double minY = Math.min(y1, y2);
+        double maxY = Math.max(y1, y2);
+
+        return px >= minX && px <= maxX && py >= minY && py <= maxY;
     }
 }
